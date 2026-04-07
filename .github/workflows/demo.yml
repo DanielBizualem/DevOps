@@ -3,6 +3,9 @@ on: [push]
 jobs:
   Build-and-Test:
     runs-on: ubuntu-latest
+    # This line below fixes the warning by setting the environment variable
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
     steps:
       - uses: actions/checkout@v4
       - name: Run Tests
@@ -10,6 +13,8 @@ jobs:
   Deploy:
     needs: Build-and-Test
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Deploy
         run: echo "Deployed code to production server."
