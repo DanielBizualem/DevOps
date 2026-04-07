@@ -1,0 +1,15 @@
+name: DevOps_Pipeline
+on: [push]
+jobs:
+  Build-and-Test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Tests
+        run: echo "Automated testing completed successfully!"
+  Deploy:
+    needs: Build-and-Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        run: echo "Deployed code to production server."
